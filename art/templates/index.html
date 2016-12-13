@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Zoya's Art</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+      <nav class="navbar navbar-default navbar-static-top text-center">
+        <a href="/">
+          <img src="{%static 'images/zoya.jpg' %}" alt="Zoya's Art">
+        </a></nav>
+ <main class="container" role="main">
+        <div class="art panel panel-default">
+        {% for arts in arts %}
+        <div class="panel-heading">
+          <h2 class="panel-title text-center"> {{ arts.name}}</h2>
+        </div>
+        <div class="panel-body">
+          <div class="art-photo">
+                <img src = "{{ arts.img_url }}" height="300">
+           </div>
+
+                    </div>
+            {% endfor %}
+            </div>
+          </main>
+
+    </body>
+</html>
