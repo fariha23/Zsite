@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% load staticfiles %}
+
+{% block content%}
+  <div class="panel-default">
+    <h3 class="panel-heading"> {{arts.name}} </h3>
+  </div>
+
+  <div class="table-responsive">
+    <img src="{{arts.img_url}}" height="400">
+    <table>
+      <hr>
+      <tr>
+      <td height="50">Medium: {{arts.medium}}</td>
+    </tr>
+      <tr>
+      <td height="50">Description: {{arts.description}}</td>
+    </tr>
+
+    </table>
+    </div>
+{% endblock%}

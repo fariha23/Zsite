@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Zoya's Art</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+      <nav class="navbar navbar-default navbar-static-top text-center">
+        <a href="/">
+          <img src="{%static 'images/zoya.jpg' %}" alt="Zoya's Art">
+        </a></nav>
+
+ <main class="container container--mw700" role="main">
+
+{% block content %}
+{% endblock %}
+
+ </main>
+ <div class="panel-footer" width="50">
+ <footer class="text-center">
+  <p>Posted by: Fariha Baloch and Zoya Tahir</p>
+  <p>Contact information: <a href="mailto:farihabaloch@gmail.com">Fariha Baloch</a>.</p>
+ <p>Copyright &copy;2016.</p>
+ </footer>
+ </div>
+
+  </body>
+ </html>

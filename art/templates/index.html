@@ -1,37 +1,41 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <title>Zoya's Art</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'style.css' %}">
-    </head>
-    <body>
-      <nav class="navbar navbar-default navbar-static-top text-center">
-        <a href="/">
-          <img src="{%static 'images/zoya.jpg' %}" alt="Zoya's Art">
-        </a></nav>
 
- <main class="container" role="main">
+{% extends 'base.html'%}
+{% load staticfiles %}
+
+{% block content%}
    <div class="row">
       {% for arts in arts %}
       <div class="col-md-4">
+        <a href="/{{arts.id}}/">
          <div class="art panel panel-default">
            <div class="panel-heading">
               <h2 class="panel-title text-center"> {{ arts.name}}</h2>
            </div>
-           <div class="panel-body">
+           <div class="panel-body text-center">
              <div class="art-photo">
-                <img src = "{{ arts.img_url }}" height="300">
+                 <img src = "{{ arts.img_url }}" height="300">
               </div>
             </div>
           </div>
+        </a>
         </div>
+        {% if forloop.counter|divisibleby:3 %}
+           </div><div class = "row">
+        {% endif %}
       {% endfor %}
-
         </div>
-  </main>
+<div class="art panel panel-default">
 
-    </body>
-</html>
+  <div class="panel-heading">
+    <h3 class="panel-title"> Add Art </h3>
+  </div>
+
+  <div class="panel-body">
+    <form action="post_url/" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit", value="Submit" />
+    </form>
+  </div>
+</div>
+{% endblock %}
