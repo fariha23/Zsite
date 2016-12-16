@@ -14,11 +14,18 @@ def detail(request, art_id):
 
 
 def post_art(request):
-    form = ArtForm(request.POST)
+    if request.method == 'POST':
+        form = ArtForm(request.POST, request.FILES)
     if form.is_valid():
-        arts = Art(name=form.cleaned_data['name'],
-                   img_url = form.cleaned_data['img_url'],
-                   medium = form.cleaned_data['medium'],
-                   description = form.cleaned_data['description'])
-        arts.save()
-    return HttpResponseRedirect('/')
+        form.save()
+        return HttpResponseRedirect('/')
+    else:
+        form = ArtForm()
+    return render(request, 'index.html', {'form': form})
+        #arts = Art(name=form.cleaned_data['name'],
+                   #img_url = form.cleaned_data['img_url'],
+                   #medium = form.cleaned_data['medium'],
+                   #description = form.cleaned_data['description'])
+        #arts.save()
+        #return HttpResponse('image upload success')
+    #return HttpResponseRedirect('/')

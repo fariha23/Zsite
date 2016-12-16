@@ -13,7 +13,7 @@
            </div>
            <div class="panel-body text-center">
              <div class="art-photo">
-                 <img src = "{{ arts.img_url }}" height="300">
+                 <img src = "{{ arts.img_url }}" height="300" width="300">
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="panel-body">
-    <form action="post_url/" method="post">
+    <form action="post_url/" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit", value="Submit" />
