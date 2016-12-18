@@ -1,7 +1,8 @@
-from django import forms
+from django.forms import ModelForm, Textarea
 from .models import Art
 
-class ArtForm(forms.ModelForm):
+class ArtForm(ModelForm):
     class Meta:
         model = Art
         fields = ('name', 'img_url', 'medium', 'description' )
+        
