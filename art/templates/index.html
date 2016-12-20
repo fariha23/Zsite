@@ -10,6 +10,10 @@
          <div class="art panel panel-default">
            <div class="panel-heading">
               <h2 class="panel-title text-center"> {{ arts.name}}</h2>
+              <a class="panel-username"
+                href="/user/{{arts.user.username }}/">
+                by: {{ arts.user.username}}
+              </a>
            </div>
            <div class="panel-body">
              <div class="art-photo" >
