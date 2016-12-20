@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Art
 from .forms import ArtForm
+#from django.template import RequestContext
+#from django.core.urlresolvers import reverse
+
+
 
 def index(request):
     arts = Art.objects.all()
@@ -21,7 +25,9 @@ def post_art(request):
         return HttpResponseRedirect('/')
     else:
         form = ArtForm()
-    return render(request, 'index.html', {'form': form})
+        return render_to_response ('index.html', {'form': form})
+
+    #return render(request, 'index.html', {'form': form})
         #arts = Art(name=form.cleaned_data['name'],
                    #img_url = form.cleaned_data['img_url'],
                    #medium = form.cleaned_data['medium'],

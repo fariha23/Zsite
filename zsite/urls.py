@@ -16,8 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+import os
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('art.urls')),
-]
+    url(r'^gallery/', include('art.urls'))
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
