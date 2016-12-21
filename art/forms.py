@@ -1,4 +1,5 @@
 from django.forms import ModelForm, Textarea
+from django import forms
 from .models import Art
 from django.utils.translation import ugettext_lazy as _
 
@@ -12,3 +13,7 @@ class ArtForm(ModelForm):
         'medium':_('Medium of the Art'),
         'description':_('Describe this Art')
         }
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='User Name', max_length=64)
+    Password = forms.CharField(widget=forms.PasswordInput())
