@@ -29,6 +29,7 @@
         {% endif %}
       {% endfor %}
         </div>
+        {% if user.is_authenticated %}
 <div class="art panel panel-default">
 
   <div class="panel-heading">
@@ -43,5 +44,5 @@
     </form>
   </div>
 </div>
-
+{% endif %}
 {% endblock %}
