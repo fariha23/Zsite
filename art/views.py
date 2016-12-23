@@ -1,13 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Art
 from .forms import ArtForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-#from django.template import RequestContext
-#from django.core.urlresolvers import reverse
-
+from django.forms.models import model_to_dict
+from django.core.urlresolvers import reverse
 
 
 def index(request):
@@ -18,7 +17,6 @@ def index(request):
 def detail(request, art_id):
     arts = Art.objects.get(id=art_id)
     return render(request, 'detail.html', {'arts': arts})
-
 
 def post_art(request):
     if request.method == 'POST':
@@ -31,6 +29,21 @@ def post_art(request):
     else:
         form = ArtForm()
         return render_to_response ('index.html', {'form': form})
+
+def edit(request, art_id):
+    arts = Art.objects.get(id=art_id)
+    if (request.method == 'POST'):
+        # Process the form
+        form = ArtForm(request.POST, request.FILES, instance=arts)
+        if form.is_valid():
+            form.save(commit = True)
+            return redirect(reverse('detail', args=[art_id,]))
+
+    else:
+        art_dict = model_to_dict(arts)
+        form = ArtForm(art_dict)
+        return render(request, 'edit.html', {'form':form})
+
 
 def profile(request, username):
     user = User.objects.get(username=username)
@@ -49,22 +62,13 @@ def login_view(request):
                     login(request,user)
                     return HttpResponseRedirect('/')
                 else:
-                    print("The account has been disabled!")
+                    return HttpResponse("The account has been disabled!")
             else:
-                print("The username and password were incorrect!")
+                return HttpResponse("The username and password were incorrect!")
     else:
         form = LoginForm()
         return render(request, 'login.html', {'form': form} )
 
-#def register(request):
-    #if request.method = "POST":
-        #form = UserCreationForm(request.POST)
-        #if form.is_valid():
-            #form.save()
-            #return HttpResponseRedirect('/login/')
-    #else:
-        #form = UserCreationForm()
-        #return render(request, 'registration.html',{'form': form})
 
 def logout_view(request):
     logout(request)

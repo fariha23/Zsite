@@ -11,7 +11,7 @@ class ArtForm(ModelForm):
         'name':_('Name this Art'),
         'img_url':_('Upload Art'),
         'medium':_('Medium of the Art'),
-        'description':_('Describe this Art')
+        'description':_('Description')
         }
 
 class LoginForm(forms.Form):

@@ -8,7 +8,7 @@ class Art(models.Model):
     name = models.CharField(max_length=100)
     img_url = models.ImageField(upload_to ='gallery')
     medium = models.CharField(max_length=50, default='Pencils')
-    description = models.CharField(max_length=500, default="Coming Soon")
+    description = models.CharField(max_length=500, default="Write something about your art!!")
 
     def __str__(self):
         return self.name
