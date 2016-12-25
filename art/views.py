@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, render_to_response, redirect
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Art
 from .forms import ArtForm, LoginForm
@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.forms.models import model_to_dict
 from django.core.urlresolvers import reverse
+
 
 
 def index(request):
@@ -32,17 +33,34 @@ def post_art(request):
 
 def edit(request, art_id):
     arts = Art.objects.get(id=art_id)
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         # Process the form
         form = ArtForm(request.POST, request.FILES, instance=arts)
         if form.is_valid():
             form.save(commit = True)
             return redirect(reverse('detail', args=[art_id,]))
-
     else:
         art_dict = model_to_dict(arts)
         form = ArtForm(art_dict)
         return render(request, 'edit.html', {'form':form})
+
+def delete(request, art_id):
+    arts = Art.objects.get(id=art_id)
+    arts.delete()
+    return redirect('index')
+
+#def delete(request, art_id):
+    #arts=Art.objects.get(id=art_id)
+    #if request.method == 'POST':
+        #form = ArtForm(request.POST, instance=arts)
+        #if form.is_valid():
+            #arts.delete()
+            #return redirect('index')
+            #return HttpResponseRedirect('index')
+    #else:
+        #art_dict = model_to_dict(arts)
+        ##form = ArtForm(art_dict)
+        #return render(request, 'delete.html', {'form':form})
 
 
 def profile(request, username):

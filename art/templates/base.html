@@ -12,10 +12,9 @@
         <a href="/">
           <img src="{%static 'images/zoya.png' %}" height="200" width="400" alt="Zoya's Art"></a>
           {% if user.is_authenticated %}
-          <a class="navbar-text navbar-right"
-          href="{% url 'profile' user.username %}">{{user.username}}</a>
-          <a class="navbar-text navbar-right"
-          href="{% url 'logout' %}">logout</a>
+          <a class="navbar-text navbar-right" href="{% url 'logout' %}">logout</a>
+          <a class="navbar-text navbar-right" href="{% url 'profile' user.username %}">Hello! {{user.username}}</a>
+
           {% else %}
           <a class="navbar-text navbar-right"
           href="{% url 'login' %}">login</a>
@@ -32,9 +31,9 @@
  </main>
  <div class="panel-footer" width="50">
  <footer class="text-center">
-  <p>Posted by: Fariha Baloch and Zoya Tahir</p>
+  <p>Site Maintained by: Fariha Baloch</p>
   <p>Contact information: <a href="mailto:farihabaloch@gmail.com">Fariha Baloch</a>.</p>
- <p>Copyright &copy;2016.</p>
+  <p>Copyright &copy;2016.</p>
  </footer>
  </div>
 
