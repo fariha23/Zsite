@@ -1,6 +1,11 @@
 $('button').one('click', function(event){
     event.preventDefault();
+    $(this).attr('disabled', 'disabled');
+    setTimeout(enableButton, 600000);
     var element = $(this);
+    var enableButton = function(){
+    $('#button').removeAttr('disabled');
+}
 
     $.ajax({
         url : '/like_art/',
