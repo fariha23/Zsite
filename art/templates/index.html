@@ -10,15 +10,15 @@
          <div class="art panel panel-default">
            <div class="panel-heading">
               <h2 class="panel-title text-center"> {{ arts.name}}</h2>
-              <a class="panel-username"
-                href="/user/{{arts.user.username }}/">
-                by: {{ arts.user.username}}
-              </a>
            </div>
            <div class="panel-body">
+
              <div class="art-photo" >
                  <img class = "img-responsive" src = "{{ arts.img_url.url }}">
-
+                 <button id="likes" data-id="{{arts.id}}"
+                 class="btn btn-mini btn-danger glyphicon glyphicon-heart
+                 type=button"> {% if arts.likes > 0 %} {{ arts.likes}} {% endif %}
+               </button>
               </div>
             </div>
           </div>

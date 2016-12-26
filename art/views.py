@@ -49,18 +49,17 @@ def delete(request, art_id):
     arts.delete()
     return redirect('index')
 
-#def delete(request, art_id):
-    #arts=Art.objects.get(id=art_id)
-    #if request.method == 'POST':
-        #form = ArtForm(request.POST, instance=arts)
-        #if form.is_valid():
-            #arts.delete()
-            #return redirect('index')
-            #return HttpResponseRedirect('index')
-    #else:
-        #art_dict = model_to_dict(arts)
-        ##form = ArtForm(art_dict)
-        #return render(request, 'delete.html', {'form':form})
+def like_art(request):
+    arts_id = request.POST.get('arts_id', None)
+
+    likes = 0
+    if (arts_id):
+        arts = Art.objects.get(id=int(arts_id))
+        if arts is not None:
+            likes = arts.likes + 1
+            arts.likes = likes
+            arts.save()
+            return HttpResponse(likes)
 
 
 def profile(request, username):

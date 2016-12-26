@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^user/(\w+)/$', views.profile, name='profile'),
     url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
+    url(r'^like_art/$', views.like_art, name='like_art' )
 
 
 ]
